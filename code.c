@@ -63,20 +63,12 @@ void setOn(){
 }
 
 void toggle(){
-		set1010();
-		delay(500);
 		HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_12);
 		HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_13);
 		HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_14);
 		HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_15);
-		delay(500);
 }
 
-void switch_3(){
-
-	
-
-}
 
 int main(){
 
@@ -98,10 +90,18 @@ int main(){
 			switch(count){
 				case 1:	switch_1();
 								break;
-				case 2:	toggle();
+				case 2:	set1010();
+								delay(500);
+								toggle();
+								delay(500);
 								break;
-				case 3:	
+				case 3:	set1001();
+								delay(500);
+								toggle();
+								delay(500);
 								break;
+				default:count = 0;
+								switch_1();
 			}
 			
 		}
