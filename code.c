@@ -1,0 +1,46 @@
+#include<stm32F4xx_HAL.h>
+
+void config(){
+	//Enabling clocks
+	__HAL_RCC_GPIOA_CLK_ENABLE();
+	__HAL_RCC_GPIOD_CLK_ENABLE();
+	
+	//setting i/o pins
+	GPIO_InitTypeDef def;
+		def.Mode = GPIO_MODE_OUTPUT_PP;
+		def.Pin = GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15;
+		HAL_GPIO_Init(GPIOD,&def);
+
+		def.Mode = GPIO_MODE_INPUT;
+		def.Pin = GPIO_PIN_0;
+		HAL_GPIO_Init(GPIOA,&def);
+}
+
+void delay(uint16_t ms){
+	for(uint16_t i=0;i<4000*ms;++i);
+}
+
+void switch_1(){
+	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_12,GPIO_PIN_SET);
+	delay(500);
+	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_13,GPIO_PIN_SET);
+	delay(500);
+	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_14,GPIO_PIN_SET);
+	delay(500);
+	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_15,GPIO_PIN_SET);
+	delay(500);
+	
+}
+
+int main(){
+
+		config();
+		while(1){
+			
+			if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_0) == GPIO_PIN_SET){
+				
+			}
+			
+		}
+
+}
