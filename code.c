@@ -80,6 +80,7 @@ int main(){
 					int temp=20000;
 					setOn();
 					while(temp>=0){
+						--temp;
 						if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_0) == GPIO_PIN_SET){
 							count++;
 							if(count>=3) break;
